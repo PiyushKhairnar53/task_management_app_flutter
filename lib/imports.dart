@@ -1,6 +1,4 @@
 export 'package:flutter/material.dart';
-export 'package:task_management_app/views/screens/home_screen.dart';
-export 'package:task_management_app/views/screens/splash_screen.dart';
 
 //libraries
 export 'package:get/get.dart';
