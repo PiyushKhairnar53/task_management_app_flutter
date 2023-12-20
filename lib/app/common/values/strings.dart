@@ -45,7 +45,7 @@ abstract class Strings {
   static const String register = 'Register';
   static const String save = 'Save';
 
-  static const String username = "Username";
+  static const String username = "Email id";
   static const String firstName = "First Name";
   static const String lastName = "Last Name";
   static const String middleName = "Middle Name";

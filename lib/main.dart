@@ -1,3 +1,4 @@
+
 import 'imports.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.theme,
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
-        initialBinding: LoginBinding(),
+        initialBinding: InitialBindings(),
       ),
     );
   }
