@@ -7,6 +7,7 @@ export 'package:get/get.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:get/get_connect/http/src/status/http_status.dart';
+export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //packages
 export 'package:task_management_app/app/common/values/strings.dart';
@@ -44,6 +45,9 @@ export 'package:task_management_app/app/modules/login/controllers/login_controll
 export 'package:task_management_app/app/modules/login/bindings/login_binding.dart';
 export 'package:task_management_app/app/modules/login/views/login_view.dart';
 export 'package:task_management_app/app/data/models/login_request.dart';
+
+//Home
+export 'package:task_management_app/app/modules/home/controllers/home_controller.dart';
 
 //api
 export 'package:get/get_connect/http/src/response/response.dart';

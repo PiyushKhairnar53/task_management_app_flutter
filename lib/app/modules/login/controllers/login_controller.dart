@@ -23,16 +23,16 @@ class LoginController extends GetxController{
     _isPasswordVisibleRx.value = !value;
   }
 
-  // void printLocalStorage(){
-  //   print(Storage.getValue(Constants.TOKEN)['role']);
-  // }
+  void printLocalStorage(){
+    print(Storage.getValue(Constants.TOKEN));
+    // print(Storage.getValue(Constants.TOKEN)['role']);
+  }
 
   void loginUser(){
     final isValid = loginFormKey.currentState!.validate();
     if (!isValid) return;
 
     loginFormKey.currentState!.save();
-
     print("Username $username Password $password");
 
     _apiHelper
@@ -40,8 +40,24 @@ class LoginController extends GetxController{
         .futureValue((value){
           print("Login Response $value");
           Storage.saveValue(Constants.TOKEN, value);
+          moveToHome();
         });
+  }
 
+  void moveToHome(){
+    Get.offAllNamed(Routes.HOME);
+  }
+
+  @override
+  void onReady() async {
+    super.onReady();
+    loginLoading.value = true;
+    await Storage.storage.initStorage;
+    if(Storage.hasData(Constants.TOKEN)){
+      moveToHome();
+    }else{
+      loginLoading.value = false;
+    }
   }
 
 }
