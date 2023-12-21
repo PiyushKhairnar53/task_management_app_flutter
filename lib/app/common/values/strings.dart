@@ -45,13 +45,14 @@ abstract class Strings {
   static const String register = 'Register';
   static const String save = 'Save';
 
-  static const String username = "Email id";
+  static const String username = "Username";
   static const String firstName = "First Name";
   static const String lastName = "Last Name";
   static const String middleName = "Middle Name";
   static const String department = "Department";
   static const String location = "Location";
   static const String workPhone = "Work Phone";
+  static const String phoneNumber = "Phone Number";
   static const String salaryRevision = "Salary Revision Due on";
   static const String dateOfJoining = "Date of Joining";
   static const String bloodGroup = "Blood Group";

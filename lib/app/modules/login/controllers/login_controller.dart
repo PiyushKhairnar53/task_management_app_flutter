@@ -48,6 +48,10 @@ class LoginController extends GetxController{
     Get.offAllNamed(Routes.HOME);
   }
 
+  void moveToRegister() {
+    Get.toNamed(Routes.REGISTER);
+  }
+
   @override
   void onReady() async {
     super.onReady();

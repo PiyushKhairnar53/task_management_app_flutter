@@ -77,14 +77,14 @@ class LoginView extends GetView<LoginController> {
                       ),
                       const Text(
                         "Dont have an account ?",
-                        style: TextStyle(fontSize: 18.0, color: Colors.grey),
+                        style: TextStyle(fontSize: 16.0, color: Colors.grey),
                       ),
                       const SizedBox(
                         height: 5.0,
                       ),
                       InkWell(
                           onTap: () {
-                            // controller.moveToRegister();
+                            controller.moveToRegister();
                           },
                           child: const CustomText('Register')),
                       Container(

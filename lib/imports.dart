@@ -48,6 +48,13 @@ export 'package:task_management_app/app/data/models/login_request.dart';
 
 //Home
 export 'package:task_management_app/app/modules/home/controllers/home_controller.dart';
+export 'package:task_management_app/app/modules/home/bindings/home_binding.dart';
+export 'package:task_management_app/app/modules/home/views/home_view.dart';
+
+//Register
+export 'package:task_management_app/app/modules/register/controllers/register_controller.dart';
+export 'package:task_management_app/app/modules/register/bindings/register_binding.dart';
+export 'package:task_management_app/app/modules/register/views/register_view.dart';
 
 //api
 export 'package:get/get_connect/http/src/response/response.dart';
