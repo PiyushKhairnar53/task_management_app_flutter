@@ -65,6 +65,17 @@ class LoginView extends GetView<LoginController> {
                         border: const OutlineInputBorder(),
                         isPassword: true,
                         maxLines: 1,
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            controller.hidePassword.value =
+                            !controller.hidePassword.value;
+                          },
+                          child: Icon(
+                            controller.hidePassword.value
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
                         onSaved: (value) {
                           controller.password = value!;
                         },
@@ -77,7 +88,7 @@ class LoginView extends GetView<LoginController> {
                       ),
                       const Text(
                         "Dont have an account ?",
-                        style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                        style: TextStyle(fontSize: 14.0, color: Colors.grey),
                       ),
                       const SizedBox(
                         height: 5.0,
@@ -86,12 +97,13 @@ class LoginView extends GetView<LoginController> {
                           onTap: () {
                             controller.moveToRegister();
                           },
-                          child: const CustomText('Register')),
-                      Container(
-                        color: Get.theme.primaryColor,
-                        width: 60,
-                        height: 2,
+                          child: const Text("Register",style: TextStyle(color: AppColors.kPrimaryColor,fontSize: 18.0),)
                       ),
+                      // Container(
+                      //   color: Get.theme.primaryColor,
+                      //   width: 60,
+                      //   height: 2,
+                      // ),
                     ],
                   ),
                 ),

@@ -21,18 +21,13 @@ class HomeView extends GetView<HomeController>{
             )
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text("Home View"),
-              _logoutButtonWidget(controller),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: controller.buildBottomNavigationMenu(context),
+      body: Obx( ()=>
+          IndexedStack(
+            index: controller.tabIndex.value,
+
+          )
+      )
     );
   }
 
@@ -43,6 +38,20 @@ class HomeView extends GetView<HomeController>{
     color: Get.theme.primaryColor,
     text: Text(
       'Logout',
+      style: Get.textTheme.headline2!.copyWith(
+        color: AppColors.white,
+        fontSize: 14,
+      ),
+    ),
+  ).paddingSymmetric(vertical: 10.0);
+
+  _localStorageButtonWidget(HomeController controller) => FormButtonComponent(
+    onPressed: () {
+      controller.printLocalStorage();
+    },
+    color: Get.theme.primaryColor,
+    text: Text(
+      'Print',
       style: Get.textTheme.headline2!.copyWith(
         color: AppColors.white,
         fontSize: 14,

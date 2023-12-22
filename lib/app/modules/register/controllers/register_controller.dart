@@ -2,15 +2,16 @@ import '../../../../imports.dart';
 
 class RegisterController extends GetxController{
 
+  final ApiHelper _apiHelper = Get.put<ApiHelper>(ApiHelperImpl());
+
   final GlobalKey<FormState> registerFormKey1 = GlobalKey<FormState>();
   final GlobalKey<FormState> registerFormKey2 = GlobalKey<FormState>();
 
-  var username = "";
   var firstName = "";
   var lastName = "";
   var userRole = "";
   var phoneNumber = "";
-  var userName = "";
+  var username = "";
   var email = "";
   var password = "";
   var confirmPassword = "";
@@ -54,7 +55,10 @@ class RegisterController extends GetxController{
                   maxLines: 1,
                   validator: Validators.validateEmpty,
                   border: const OutlineInputBorder(),
-                  onSaved: (value) {
+                  onSaved: (value){
+                    firstName = value!;
+                  },
+                  onChanged: (value) {
                     firstName = value!;
                   },
                 ),
@@ -67,6 +71,9 @@ class RegisterController extends GetxController{
                   validator: Validators.validateEmpty,
                   maxLines: 1,
                   onSaved: (value) {
+                    lastName = value!;
+                  },
+                  onChanged: (value) {
                     lastName = value!;
                   },
                 ),
@@ -108,7 +115,17 @@ class RegisterController extends GetxController{
                     ),
                   ],
                 ),
-                const SizedBox(height: 15.0),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0,top: 8.0),
+                      child: dropdownValue == "Select Role" ?
+                        Text("Select role to continue",style: TextStyle(color: Colors.red[700],fontSize: 12.5),)
+                        :const SizedBox(),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10.0),
                 CustomTextFieldWidget(
                   addHint: true,
                   keyboardType: TextInputType.text,
@@ -116,6 +133,9 @@ class RegisterController extends GetxController{
                   border: const OutlineInputBorder(),
                   maxLines: 1,
                   onSaved: (value) {
+                    phoneNumber = value!;
+                  },
+                  onChanged: (value) {
                     phoneNumber = value!;
                   },
                 ),
@@ -144,6 +164,9 @@ class RegisterController extends GetxController{
                   onSaved: (value) {
                     username = value!;
                   },
+                  onChanged: (value) {
+                    username = value!;
+                  },
                 ),
                 SizedBox(height: 15),
                 CustomTextFieldWidget(
@@ -153,6 +176,9 @@ class RegisterController extends GetxController{
                   validator: Validators.validateEmail,
                   border: const OutlineInputBorder(),
                   onSaved: (value) {
+                    email = value!;
+                  },
+                  onChanged: (value) {
                     email = value!;
                   },
                 ),
@@ -184,12 +210,12 @@ class RegisterController extends GetxController{
                     ),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Obx(
                   () => CustomTextFieldWidget(
                     addHint: true,
                     hintText: Strings.confirmPassword,
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     isPassword: hideCPassword.value,
                     maxLines: 1,
                     validator: (confirmPassword) {
@@ -213,22 +239,22 @@ class RegisterController extends GetxController{
                   ),
                 ),
                 SizedBox(height: 15),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Password must be",
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text("* At least 6 characters."),
-                    Text("* At least one non alphanumeric character."),
-                    Text("* At least one lowercase ('a'-'z')."),
-                    Text("* At least one uppercase ('A'-'Z')."),
-                    Text("* At least one digit ('0'-'9').")
-                  ],
-                ),
+                // const Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       "Password must be",
+                //       style: TextStyle(
+                //           fontStyle: FontStyle.italic,
+                //           fontWeight: FontWeight.w600),
+                //     ),
+                //     Text("* At least 6 characters."),
+                //     Text("* At least one non alphanumeric character."),
+                //     Text("* At least one lowercase ('a'-'z')."),
+                //     Text("* At least one uppercase ('A'-'Z')."),
+                //     Text("* At least one digit ('0'-'9').")
+                //   ],
+                // ),
               ],
             ),
           ),
@@ -237,8 +263,12 @@ class RegisterController extends GetxController{
   ];
 
   void onStepContinue(){
-    if (activeCurrentStep.value < (stepList().length - 1)) {
-      activeCurrentStep.value += 1;
+    final isValid = registerFormKey1.currentState!.validate();
+    if(isValid && dropdownValue.value != "Select Role"){
+      userRole = dropdownValue.value;
+      if (activeCurrentStep.value < (stepList().length - 1)) {
+        activeCurrentStep.value += 1;
+      }
     }
   }
 
@@ -253,5 +283,36 @@ class RegisterController extends GetxController{
     Get.offAllNamed(Routes.LOGIN);
   }
 
+  void registerUser(){
+    final isForm1Valid = registerFormKey1.currentState!.validate();
+    final isForm2Valid = registerFormKey2.currentState!.validate();
+
+    if(isForm1Valid && isForm2Valid) {
+      print("FirstName - $firstName, LastName - $lastName, Role - $userRole, Phone - $phoneNumber, Username - $username, Email - $email, Password - $password");
+
+      if (userRole == "Manager") {
+        _apiHelper
+            .registerManager(RegisterRequest(firstName: firstName,
+            lastName: lastName,
+            email: email,
+            username: username,
+            phoneNumber: phoneNumber,
+            password: password.trim()))
+            .futureValue((value) {
+              print("Register Response $value");
+              Get.showSnackbar(
+                const GetSnackBar(
+                  title: "Registration Successful!",
+                  message: 'User Registered Successfully',
+                  icon: Icon(Icons.done,color: AppColors.white,),
+                  backgroundColor: Colors.green,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+              moveToLogin();
+        });
+      }
+    }
+  }
 
 }

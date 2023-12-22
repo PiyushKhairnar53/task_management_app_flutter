@@ -21,7 +21,6 @@ export 'package:task_management_app/app/common/util/validators.dart';
 export 'package:task_management_app/app/common/constants.dart';
 export 'package:task_management_app/app/common/util/utils.dart';
 
-
 //appPages
 export 'package:task_management_app/app/routes/app_pages.dart';
 
@@ -30,7 +29,6 @@ export 'package:task_management_app/app/data/models/token_response.dart';
 
 //bindings
 export 'package:task_management_app/app/common/util/initializer.dart';
-
 
 //widgets
 export 'package:task_management_app/app/modules/widgets/custom_text_field_widget.dart';
@@ -55,6 +53,7 @@ export 'package:task_management_app/app/modules/home/views/home_view.dart';
 export 'package:task_management_app/app/modules/register/controllers/register_controller.dart';
 export 'package:task_management_app/app/modules/register/bindings/register_binding.dart';
 export 'package:task_management_app/app/modules/register/views/register_view.dart';
+export 'package:task_management_app/app/data/models/register_request.dart';
 
 //api
 export 'package:get/get_connect/http/src/response/response.dart';
@@ -63,7 +62,6 @@ export 'package:task_management_app/app/data/error/errors.dart';
 export 'package:task_management_app/app/data/interface_controller/api_interface_controller.dart';
 export 'package:task_management_app/app/data/api_response.dart';
 export 'package:task_management_app/app/data/api_helper_impl.dart';
-
 
 //storage
 export 'package:task_management_app/app/common/storage/storage.dart';
