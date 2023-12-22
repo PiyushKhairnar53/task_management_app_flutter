@@ -1,3 +1,5 @@
+import 'package:task_management_app/app/modules/home/views/fragments/completed/views/completed_view.dart';
+
 import '../../../../imports.dart';
 
 class HomeView extends GetView<HomeController>{
@@ -25,37 +27,15 @@ class HomeView extends GetView<HomeController>{
       body: Obx( ()=>
           IndexedStack(
             index: controller.tabIndex.value,
-
+            children: [
+              TodoView(),
+              InProgressView(),
+              CodeReviewView(),
+              CompletedView(),
+            ],
           )
       )
     );
   }
 
-  _logoutButtonWidget(HomeController controller) => FormButtonComponent(
-    onPressed: () {
-      controller.onLogoutClick();
-    },
-    color: Get.theme.primaryColor,
-    text: Text(
-      'Logout',
-      style: Get.textTheme.headline2!.copyWith(
-        color: AppColors.white,
-        fontSize: 14,
-      ),
-    ),
-  ).paddingSymmetric(vertical: 10.0);
-
-  _localStorageButtonWidget(HomeController controller) => FormButtonComponent(
-    onPressed: () {
-      controller.printLocalStorage();
-    },
-    color: Get.theme.primaryColor,
-    text: Text(
-      'Print',
-      style: Get.textTheme.headline2!.copyWith(
-        color: AppColors.white,
-        fontSize: 14,
-      ),
-    ),
-  ).paddingSymmetric(vertical: 10.0);
 }

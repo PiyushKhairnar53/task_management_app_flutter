@@ -49,6 +49,21 @@ export 'package:task_management_app/app/modules/home/controllers/home_controller
 export 'package:task_management_app/app/modules/home/bindings/home_binding.dart';
 export 'package:task_management_app/app/modules/home/views/home_view.dart';
 
+//TodoFragment
+export 'package:task_management_app/app/modules/home/views/fragments/todo/controllers/todo_controller.dart';
+export 'package:task_management_app/app/modules/home/views/fragments/todo/views/todo_view.dart';
+
+//InProgress
+export 'package:task_management_app/app/modules/home/views/fragments/in_progress/controller/in_progress_controller.dart';
+export 'package:task_management_app/app/modules/home/views/fragments/in_progress/views/in_progress_view.dart';
+
+//CodeReview
+export 'package:task_management_app/app/modules/home/views/fragments/code_review/controller/code_review_controller.dart';
+export 'package:task_management_app/app/modules/home/views/fragments/code_review/views/code_review_view.dart';
+
+//Completed
+export 'package:task_management_app/app/modules/home/views/fragments/completed/controller/completed_controller.dart';
+
 //Register
 export 'package:task_management_app/app/modules/register/controllers/register_controller.dart';
 export 'package:task_management_app/app/modules/register/bindings/register_binding.dart';
