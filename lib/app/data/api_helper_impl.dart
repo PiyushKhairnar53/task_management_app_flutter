@@ -10,9 +10,7 @@ class ApiHelperImpl extends GetConnect with ApiHelper{
     super.onInit();
     httpClient.baseUrl = Constants.BASE_URL;
     httpClient.timeout = Constants.timeout;
-
     addRequestModifier();
-
     httpClient.addResponseModifier((request, response) {
       printInfo(
         info: 'Status Code : ${response.statusCode}\n'
@@ -31,7 +29,6 @@ class ApiHelperImpl extends GetConnect with ApiHelper{
         var tokenResponse = TokenResponse.fromJson(token);
         request.headers['Authorization'] = "Bearer ${tokenResponse.result}";
       }
-
       printInfo(
         info: 'REQUEST ║ ${request.method.toUpperCase()}\n'
               'url: ${request.url}\n'
@@ -46,6 +43,16 @@ class ApiHelperImpl extends GetConnect with ApiHelper{
   @override
   Future<Response<dynamic>> login(LoginRequest loginRequest) {
     return post('Authentication/login', json.encode(loginRequest.toJson()));
+  }
+
+  @override
+  Future<Response> registerDeveloper(RegisterRequest registerRequest) {
+    return post('Authentication/RegisterDeveloper', json.encode(registerRequest.toJson()));
+  }
+
+  @override
+  Future<Response> registerManager(RegisterRequest registerRequest) {
+    return post('Authentication/RegisterManager', json.encode(registerRequest.toJson()));
   }
 
 }

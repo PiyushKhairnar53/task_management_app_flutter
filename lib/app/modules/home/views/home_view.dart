@@ -1,3 +1,5 @@
+import 'package:task_management_app/app/modules/home/views/fragments/completed/views/completed_view.dart';
+
 import '../../../../imports.dart';
 
 class HomeView extends GetView<HomeController>{
@@ -21,32 +23,19 @@ class HomeView extends GetView<HomeController>{
             )
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+      bottomNavigationBar: controller.buildBottomNavigationMenu(context),
+      body: Obx( ()=>
+          IndexedStack(
+            index: controller.tabIndex.value,
             children: [
-              const Text("Home View"),
-              _logoutButtonWidget(controller),
+              TodoView(),
+              InProgressView(),
+              CodeReviewView(),
+              CompletedView(),
             ],
-          ),
-        ),
-      ),
+          )
+      )
     );
   }
 
-  _logoutButtonWidget(HomeController controller) => FormButtonComponent(
-    onPressed: () {
-      controller.onLogoutClick();
-    },
-    color: Get.theme.primaryColor,
-    text: Text(
-      'Logout',
-      style: Get.textTheme.headline2!.copyWith(
-        color: AppColors.white,
-        fontSize: 14,
-      ),
-    ),
-  ).paddingSymmetric(vertical: 10.0);
 }

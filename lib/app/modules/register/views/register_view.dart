@@ -44,7 +44,7 @@ class RegisterView extends GetView<RegisterController>{
                     children: <Widget>[
                       Obx( ()=> controller.activeCurrentStep>0 ?
                         TextButton(
-                          style: TextButton.styleFrom(backgroundColor: AppColors.kPrimaryColor),
+                          style: TextButton.styleFrom(backgroundColor: Colors.grey[600]),
                           onPressed: () {
                             controller.onStepPrevious();
                           },
@@ -58,12 +58,14 @@ class RegisterView extends GetView<RegisterController>{
                       TextButton(
                         style: TextButton.styleFrom(backgroundColor: AppColors.kPrimaryColor),
                         onPressed: () {
+                          if(controller.activeCurrentStep>0){
+                            controller.registerUser();
+                          }
                           controller.onStepContinue();
                         },
-                        child: const Text(
-                          'Continue',
-                          style:
-                          TextStyle(color: AppColors.white),
+                        child: Text(
+                          controller.activeCurrentStep>0 ?' Submit ': 'Continue',
+                          style: const TextStyle(color: AppColors.white),
                         ),
                       ),
                     ],
@@ -102,9 +104,9 @@ class RegisterView extends GetView<RegisterController>{
             //   controller.activeCurrentStep.value -= 1;
             // },
 
-            onStepTapped: (int index) {
-              controller.activeCurrentStep.value = index;
-            },
+            // onStepTapped: (int index) {
+            //   controller.activeCurrentStep.value = index;
+            // },
           );
         }
         ),

@@ -11,6 +11,8 @@ class LoginController extends GetxController{
 
   var username = "";
   var password = "";
+  var hidePassword = true.obs;
+
 
   //PASSWORD VISIBLE OR NOT
   final RxBool _isPasswordVisibleRx = RxBool(false);
@@ -26,6 +28,15 @@ class LoginController extends GetxController{
   void printLocalStorage(){
     print(Storage.getValue(Constants.TOKEN));
     // print(Storage.getValue(Constants.TOKEN)['role']);
+    Get.showSnackbar(
+      const GetSnackBar(
+        title: "Registration Successful!",
+        message: 'User Registered Successfully',
+        icon: Icon(Icons.done_all,color: AppColors.white,),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ),
+    );
   }
 
   void loginUser(){
