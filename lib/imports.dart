@@ -26,6 +26,8 @@ export 'package:task_management_app/app/routes/app_pages.dart';
 
 //models
 export 'package:task_management_app/app/data/models/token_response.dart';
+export 'package:task_management_app/app/data/models/task.dart';
+export 'package:task_management_app/app/data/models/tasks_request.dart';
 
 //bindings
 export 'package:task_management_app/app/common/util/initializer.dart';
