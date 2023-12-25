@@ -44,7 +44,7 @@ class LoginController extends GetxController{
     if (!isValid) return;
 
     loginFormKey.currentState!.save();
-    print("Username $username Password $password");
+    // print("Username $username Password $password");
 
     _apiHelper
         .login(LoginRequest(username: username, password: password.trim()))

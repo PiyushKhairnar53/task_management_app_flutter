@@ -27,7 +27,7 @@ class ApiHelperImpl extends GetConnect with ApiHelper{
         var token = Storage.getValue(Constants.TOKEN);
         print("Token $token");
         var tokenResponse = TokenResponse.fromJson(token);
-        request.headers['Authorization'] = "Bearer ${tokenResponse.result}";
+        request.headers['Authorization'] = "Bearer ${Storage.getValue(Constants.TOKEN)['token']}";
       }
       printInfo(
         info: 'REQUEST ║ ${request.method.toUpperCase()}\n'
@@ -48,6 +48,11 @@ class ApiHelperImpl extends GetConnect with ApiHelper{
   @override
   Future<Response> registerDeveloper(RegisterRequest registerRequest) {
     return post('Authentication/RegisterDeveloper', json.encode(registerRequest.toJson()));
+  }
+
+  @override
+  Future<Response> getTasks(TasksRequest tasksRequest) {
+    return post('Task/GetTasksByStatus', json.encode(tasksRequest.toJson()));
   }
 
   @override

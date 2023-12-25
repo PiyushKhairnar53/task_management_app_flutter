@@ -62,17 +62,6 @@ class HomeController extends GetxController{
             label: 'Done',
             backgroundColor: AppColors.white,
           ),
-          // BottomNavigationBarItem(
-          //   icon: Container(
-          //     margin: const EdgeInsets.only(bottom: 7),
-          //     child: const Icon(
-          //       Icons.settings,
-          //       size: 20.0,
-          //     ),
-          //   ),
-          //   label: 'Settings',
-          //   backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
-          // ),
         ],
       ),
     ));
@@ -87,4 +76,5 @@ class HomeController extends GetxController{
     print(Storage.getValue(Constants.TOKEN));
     // print(Storage.getValue(Constants.TOKEN)['role']);
   }
+
 }
