@@ -54,6 +54,7 @@ export 'package:task_management_app/app/modules/home/views/home_view.dart';
 //TodoFragment
 export 'package:task_management_app/app/modules/home/views/fragments/todo/controllers/todo_controller.dart';
 export 'package:task_management_app/app/modules/home/views/fragments/todo/views/todo_view.dart';
+export 'package:task_management_app/app/modules/widgets/custom_task_card.dart';
 
 //InProgress
 export 'package:task_management_app/app/modules/home/views/fragments/in_progress/controller/in_progress_controller.dart';
