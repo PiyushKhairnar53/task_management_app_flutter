@@ -4,18 +4,40 @@ class CompletedController extends GetxController{
 
   String name = "Completed";
 
-  void printLocalStorage(){
-    print(Storage.getValue(Constants.TOKEN));
-    // print(Storage.getValue(Constants.TOKEN)['role']);
-    Get.showSnackbar(
-      const GetSnackBar(
-        title: "Registration Successful!",
-        message: 'User Registered Successfully',
-        icon: Icon(Icons.done_all,color: AppColors.white,),
-        backgroundColor: Colors.green,
-        duration: Duration(seconds: 3),
-      ),
-    );
+  String? currentUserRole, todoUserRole;
+
+  final ApiHelper _apiHelper = Get.put<ApiHelper>(ApiHelperImpl());
+  var completedTaskList = List<Task>.empty(growable: true).obs;
+
+  var loadingScreen = false.obs;
+
+  @override
+  void onInit() async {
+    // TODO: implement onInit
+    super.onInit();
+    loadingScreen.value = true;
+    currentUserRole = Storage.getValue(Constants.TOKEN)['role'];
+    if(currentUserRole == "Manager"){
+      todoUserRole = "Developer Assigned";
+    }
+    else{
+      todoUserRole = "Assigned by Manager";
+    }
+    await getTasksData();
+    loadingScreen.value = false;
+  }
+
+  Future<void> getTasksData() async{
+    _apiHelper
+        .getTasks(TasksRequest(userId: Storage.getValue(Constants.TOKEN)['userId'],statusId: 4))
+        .futureValue((value){
+      print("Tasks Response $value");
+      var taskResponse = TaskResponse.fromJson(value);
+      completedTaskList.assignAll(taskResponse.result!.toList(growable: true));
+      update();
+    }, onError: (error) {
+      print("Get Tasks $error");
+    });
   }
 
   void onLogoutClick(){

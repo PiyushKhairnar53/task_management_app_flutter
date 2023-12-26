@@ -60,4 +60,9 @@ class ApiHelperImpl extends GetConnect with ApiHelper{
     return post('Authentication/RegisterManager', json.encode(registerRequest.toJson()));
   }
 
+  @override
+  Future<Response> updateTaskStatus(UpdateTaskStatusRequest updateTaskStatusRequest) {
+    return put('Task/UpdateTaskStatus',json.encode(updateTaskStatusRequest.toJson()));
+  }
+
 }

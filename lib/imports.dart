@@ -28,6 +28,7 @@ export 'package:task_management_app/app/routes/app_pages.dart';
 export 'package:task_management_app/app/data/models/token_response.dart';
 export 'package:task_management_app/app/data/models/task.dart';
 export 'package:task_management_app/app/data/models/tasks_request.dart';
+export 'package:task_management_app/app/data/models/update_task_status_request.dart';
 
 //bindings
 export 'package:task_management_app/app/common/util/initializer.dart';
@@ -39,6 +40,7 @@ export 'package:task_management_app/app/modules/widgets/form_button_component.da
 export 'package:task_management_app/app/modules/widgets/custom_inkwell_widget.dart';
 export 'package:task_management_app/app/modules/widgets/custom_text_button.dart';
 export 'package:task_management_app/app/modules/widgets/custom_error_widget.dart';
+export 'package:task_management_app/app/modules/widgets/custom_dropdown_field.dart';
 
 //Login
 export 'package:task_management_app/app/modules/login/controllers/login_controller.dart';
