@@ -13,5 +13,8 @@ Registration Screen ->
 Home Screen ->
 
 ![Screenshot 2024-01-19 161509](https://github.com/PiyushKhairnar53/task_management_app_flutter/assets/41378449/7fec16d0-d13f-45e9-a1db-5901b346bc6e)
+
 ![Screenshot 2024-01-19 161635](https://github.com/PiyushKhairnar53/task_management_app_flutter/assets/41378449/88885fcd-fc70-430e-89e9-33ddf0870ebb)
+
+![Screenshot 2024-01-19 162546](https://github.com/PiyushKhairnar53/task_management_app_flutter/assets/41378449/1f1672cd-be2e-455e-9544-b2e03a74bc89)
 
